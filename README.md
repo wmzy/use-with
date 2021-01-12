@@ -3,7 +3,7 @@
 [![install size](https://packagephobia.now.sh/badge?p=use-with)](https://packagephobia.now.sh/result?p=use-with)
 # use-with
 
-> Split state from view.
+> React Hooks + HOC.
 
 ## Install
 
@@ -15,48 +15,18 @@ npm install use-with
 
 ```jsx
 import * as React from 'react';
-import useModel from 'use-with';
+import useWith from 'use-with';
+import Hello from './Hello';
 
-function useCounter(counterModel) {
-  const [model, useProp] = useModel(
-    counterModel ? counterModel.model : undefined
-  );
+export default function Demo({className}) {
+  const HelloWorld = useWith(Hello, {className, message: 'World'});
 
-  return {
-    model,
-    useStep(step) {
-      return useProp('step', step);
-    },
-    useNumber(num) {
-      return useProp('num', num);
-    }
-  };
-}
-
-function Counter({model}) {
-  const m = useCounter(model);
-  const [step, setStep] = m.useStep(1);
-  const [num, setNum] = m.useNumber(0);
-
-  return (
-    <div>
-      <span> {num} </span>
-      <button onClick={() => setNum((n) => n + step)}>add {step}</button>
-      <button onClick={() => setStep((n) => n + 1)}>add step</button>
-    </div>
-  );
-}
-
-export default function App() {
-  const counter = useCounter();
-  const [, setNum] = counter.useNumber(1);
-
-  return (
-    <div>
-      <Counter model={counter} />
-      <button onClick={() => setNum(1)}>Reset</button>
-    </div>
-  );
+  return <>
+    <HelloWorld />
+    <HelloWorld />
+    <HelloWorld />
+    <HelloWorld className="last" />
+  </>;
 }
 ```
 
