@@ -1,5 +1,3 @@
-// TODO: combine multiple models
-
 import * as React from 'react';
 
 export default function useWith(Component, props) {
