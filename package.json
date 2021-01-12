@@ -1,0 +1,114 @@
+{
+  "name": "use-with",
+  "version": "0.1.0",
+  "description": "use-with",
+  "main": "dist/use-with.cjs.js",
+  "module": "dist/use-with.esm.js",
+  "browser": "dist/use-with.esm.js",
+  "unpkg": "dist/use-with.umd.min.js",
+  "jsdelivr": "dist/use-with.umd.min.js",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "storybook": "start-storybook",
+    "storybook:publish": "build-storybook && npm run storybook:upload && npm run storybook:clean",
+    "storybook:build": "build-storybook",
+    "storybook:upload": "gh-pages -d storybook-static --git \"$(which git)\"",
+    "storybook:clean": "rimraf storybook-static",
+    "commit": "lint-staged && git-cz -n",
+    "build": "rollup -c",
+    "prepublishOnly": "rimraf dist && npm run build",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint --fix src test *.js",
+    "test": "cross-env NODE_ENV=test nyc mocha -r @babel/register --recursive --exclude mock --exclude fixtures -r should -r should-sinon",
+    "start": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmzy/use-with.git"
+  },
+  "keywords": [
+    "react",
+    "model",
+    "hooks"
+  ],
+  "author": "wmzy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wmzy/use-with/issues"
+  },
+  "homepage": "https://github.com/wmzy/use-with",
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/register": "^7.10.5",
+    "@rollup/plugin-replace": "^2.3.3",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-notes": "^5.3.19",
+    "@storybook/addon-options": "^5.3.19",
+    "@storybook/addon-storysource": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@testing-library/react": "^10.4.8",
+    "@testing-library/react-hooks": "^3.4.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "commitizen": "^4.1.2",
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-builtin-compat": "0.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-mocha": "^7.0.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "gh-pages": "^3.1.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.23.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^6.1.0",
+    "should": "^13.2.3",
+    "should-sinon": "0.0.6",
+    "sinon": "^9.0.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "cross-env NODE_ENV=production eslint --fix",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "dependencies": {}
+}
