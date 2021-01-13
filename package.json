@@ -1,6 +1,6 @@
 {
   "name": "use-with",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "use-with",
   "main": "dist/use-with.cjs.js",
   "module": "dist/use-with.esm.js",
