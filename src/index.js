@@ -1,10 +1,14 @@
 import * as React from 'react';
 
-export default function useWith(Component, props) {
+export function useFC(render) {
   const renderRef = React.useRef();
-  renderRef.current = (restProps) => <Component {...props} {...restProps} />
+  renderRef.current = render;
 
-  return React.useRef(function Wrapper(restProps) {
+  return React.useRef(function RenderFunctionWrapper(restProps) {
     return renderRef.current(restProps);
   }).current;
+}
+
+export default function useWith(Wrapped, props) {
+  return useFC((restProps) => <Wrapped {...props} {...restProps} />);
 }

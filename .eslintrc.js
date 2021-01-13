@@ -10,10 +10,13 @@ module.exports = {
     __DEV__: 'readonly'
   },
   plugins: ['prettier', 'builtin-compat'],
-  extends: ['airbnb', 'airbnb/hooks', 'eslint-config-prettier'],
+  extends: ['airbnb', 'airbnb/hooks', 'prettier', 'prettier/react'],
   rules: {
     'prettier/prettier': 'error',
     'builtin-compat/no-incompatible-builtins': 'error',
+    'react/jsx-filename-extension': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
     'no-return-assign': ['error', 'except-parens'],
     'no-shadow': 'off',
     'no-param-reassign': 'off',
